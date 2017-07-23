@@ -82,3 +82,38 @@ Add the `?sourceMap` option to the `css-loader` loader and also to every other c
     },
     ...
 ```
+
+## Requiring all files in a directory 
+
+This is used to implement a module system for multipage applications. See [require.context API documentation](https://webpack.js.org/guides/dependency-management/#require-context)
+
+> A context module exports a (require) function that takes one argument: the request.
+>
+> The exported function has 3 properties: resolve, keys, id.
+>
+> * `resolve` is a function and returns the module id of the parsed request.
+>
+> * `keys` is a function that returns an array of all possible requests that the context module can handle.
+>
+> This can be useful if you want to require all files in a directory or matching a pattern, Example:
+>
+> ```js
+> function importAll (r) {
+>   r.keys().forEach(r);
+> }
+>
+> importAll(require.context('../components/', true, /\.js$/));
+> ```
+>
+> ```js
+> var cache = {};
+>
+> function importAll (r) {
+>   r.keys().forEach(key => cache[key] = r(key));
+> }
+>
+> importAll(require.context('../components/', true, /\.js$/));
+> // At build-time cache will be populated with all required modules.
+> ```
+>
+> * `id` is the module id of the context module. This may be useful for module.hot.accept.
