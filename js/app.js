@@ -1,7 +1,9 @@
 import styles from '../css/styles.css';
 import styles2 from '../css/styles2.css';
 
+
 import Router from './router';
+import ready from 'document-ready-promise';
 
 // Load page modules
 var pageModules = {};
@@ -23,4 +25,6 @@ function extractPageId() {
     return pageId;
 }
 
-Router.executePageModule(pageModules, extractPageId);
+ready().then(() => {
+    Router.executePageModule(pageModules, extractPageId);
+});
