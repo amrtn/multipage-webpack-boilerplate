@@ -117,3 +117,8 @@ This is used to implement a module system for multipage applications. See [requi
 > ```
 >
 > * `id` is the module id of the context module. This may be useful for module.hot.accept.
+
+2017-07-28 05:09:55
+
+Changed the focus of the project to a boilerplate that helps to start building webapps with mvc backends that generate multiple html pages. Each html page will execute a webpack js module. The HTML `<body>` element references the specific js module to execute. Webpack is used to bundle all the js and css files for production. Sourcemaps and `webpack-dev-server` are used to ease front-end code development.
+
