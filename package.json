@@ -1,5 +1,5 @@
 {
-  "name": "webpack-learn",
+  "name": "multipage-webpack-boilerplate",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
