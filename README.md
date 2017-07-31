@@ -99,13 +99,13 @@ Css files are stored in the `css` directory. You add new css rules to the defaul
 
 To link a new css file (e.g. `myappstyles.css`) to the css distribution bundle you can use any of these approaches:
 
-* Import css files in `js/app.js` to add it to the css bundle:
+* Import css files in `js/app.js` to add it to the css bundle (see `/js/app.js`):
 
 ```js
 import myappstyles from `./css/myappstyles.css`;
 ```
 
-* Add an `@import` statement in `css/styles.css`
+* Add an `@import` statement in `css/styles.css` (see `/css/styles.css` and `/css/imported-styles.css`)
 
 ### Using LESS and SASS
 
@@ -113,11 +113,38 @@ import myappstyles from `./css/myappstyles.css`;
 
 ### Add a js module
 
-For each page that needs to execute js code add a new file in `js/pages`.
+Each html page should have a `data-module-id` attribute attached to the `<body>` tag. This attribute should contain an unique page id that is used to locate the correct js module to invoke when the page is loaded. When the DOM finishes loading an `onReady` function will be executed in the javascript module that matches its `id` property with the content of the `data-module-id`.
 
-### Connect a HTML page with its js module
+For example: 
 
-* [ ] TODO
+The `/page1.html` file
+
+```html
+<html>
+
+<head>
+    <title>Page1</title>
+    <link rel="stylesheet" href="dist/styles.css">
+</head>
+
+<body data-module-id="page1-module">
+    Page 1
+    <script src="dist/bundle.js"></script>
+</body>
+
+</html>
+```
+
+will invoke the `/js/pages/page1.js`'s `onReady` function when the DOM finishes loading:
+
+```js
+module.exports = {
+    id: 'page1-module',
+    onReady: () => {
+        console.log('Page 1!');
+    }
+}
+```
 
 ### Add frontend dependencies
 
@@ -139,33 +166,27 @@ For each page that needs to execute js code add a new file in `js/pages`.
 
 * [ ] TODO
 
-### Deploy your weebapp
+### Deploy your webapp
 
 * [ ] TODO
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+To build the bundles execute
+
+```bash
+npm run build
+```
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Webpack](https://webpack.js.org/) - Module bundler
+* [NPM](https://www.npmjs.com/) - Dependency Management
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Álvaro Martín** - *Initial work* - [amrtn](https://github.com/amrtn)
 
 ## License
 
