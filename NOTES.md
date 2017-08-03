@@ -122,3 +122,87 @@ This is used to implement a module system for multipage applications. See [requi
 
 Changed the focus of the project to a boilerplate that helps to start building webapps with mvc backends that generate multiple html pages. Each html page will execute a webpack js module. The HTML `<body>` element references the specific js module to execute. Webpack is used to bundle all the js and css files for production. Sourcemaps and `webpack-dev-server` are used to ease front-end code development.
 
+2017-08-01 17:56:38
+
+## Adding Bootstrap 4 (in `bootstrap` branch)
+
+We are going to use bootstrap 4.0.0-alpha.6 using [bootstrap-loader](https://www.npmjs.com/package/bootstrap-loader)
+
+```bash
+npm install --save bootstrap-loader
+
+npm install --save-dev file-loader
+
+npm install --save-dev bootstrap@v4.0.0-alpha.6
+
+npm install --save-dev css-loader node-sass resolve-url-loader sass-loader style-loader url-loader
+
+npm install --save-dev imports-loader exports-loader
+
+npm install --save-dev postcss-loader
+```
+
+The second command (`npm install --save-dev bootstrap@v4.0.0-alpha.6`) is ommited in the `bootstrap-loader` documentation but is an unmet dependency for the package `bootstrap@4.0.0-alpha.6`.
+
+NOTE: I cannot make this work, let's try with bootstrap 3
+
+2017-08-03 11:03:31
+
+## Adding Bootstrap 3 (in `bootstrap` branch)
+
+References:
+
+* [Ihatetomatoes' Youtube video](https://www.youtube.com/watch?v=cN0eUhoV_Gc)
+* [Ihatetomatoes' sample github repo](https://github.com/Ihatetomatoes/webpack-101-bootstrap)
+* [`bootstrap-loader` installation docs](https://github.com/shakacode/bootstrap-loader#installation)
+* [`webpack-merge`](https://github.com/survivejs/webpack-merge)
+
+We are going to use [bootstrap-loader](https://www.npmjs.com/package/bootstrap-loader).
+
+```bash
+npm install --save-dev bootstrap-loader bootstrap-sass css-loader node-sass resolve-url-loader sass-loader style-loader url-loader
+```
+
+Per `bootstrap-loader` documentation, we need to add a new loader for glyphicons in bootstrap. To avoid complicating the main webpack configuration file we move the bootstrap-specific configuration to a new file. We create a `webpack.bootstrap.config.js` and then use `webpack-merge` to merge back the bootstrap config with the general config.
+
+```bash
+npm install --save-dev webpack-merge file-loader
+```
+
+`webpack.bootstrap.config.js` file:
+
+```js
+module.exports = {
+    module: {
+        rules: [{
+            test: /\.(woff2?|svg)$/,
+            use: 'url-loader?limit=10000'
+        }, {
+            test: /\.(ttf|eot)$/,
+            loader: 'file-loader'
+        }]
+    }
+}
+```
+
+Then we need to install jQuery:
+
+```bash
+npm install --save jquery
+npm install --save-dev imports-loader
+```
+
+And add a loader for jQuery in the bootstrap-specific config file:
+
+```js
+module.rules: [
+    ...,
+    {
+        // jQuery
+        test: /bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/,
+        loader: 'imports-loader?jQuery=jquery'
+    }
+]
+```
+
+At this point we have a basic functional bootstrap-powered website

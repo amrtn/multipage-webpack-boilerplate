@@ -1,5 +1,7 @@
 var path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const bootstrapConfig = require('./webpack.bootstrap.config');
+const merge = require('webpack-merge');
 
 
 // Output extracted CSS to a file
@@ -8,7 +10,7 @@ const extractTextPlugin = new ExtractTextPlugin({
 });
 
 
-module.exports = {
+const generalConfig = {
     devtool: 'source-map',
     entry: './js/app.js',
     output: {
@@ -29,4 +31,9 @@ module.exports = {
         }]
     },
     plugins: [extractTextPlugin]
-}
+};
+
+// Using a constant here allows us to console.log the merged configuration
+const fullConfig = merge(generalConfig, bootstrapConfig);
+
+module.exports = fullConfig;
