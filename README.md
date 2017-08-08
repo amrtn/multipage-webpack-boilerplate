@@ -47,8 +47,7 @@ npm run dev
 
 Multipage Webpack Boilerplate will create the structure of the frontend webapp for your
 
-
-#### CSS
+### CSS
 
 Css files are stored in the `css` directory. You add new css rules to the default `style.css` file or create a new css file inside the `css` directory.
 
@@ -101,6 +100,8 @@ module.exports = {
 }
 ```
 
+You can learn more about js page modules in the [documentation](docs/js-page-modules.md).
+
 ### Add frontend dependencies
 
 * [ ] TODO
@@ -111,7 +112,7 @@ module.exports = {
 
 #### Bootstrap
 
-* [ ] TODO
+Bootstrap 3 is enabled by default. To disable it set `"useBootstrap3": false` in `package.json`
 
 ### Integrate backend technology
 

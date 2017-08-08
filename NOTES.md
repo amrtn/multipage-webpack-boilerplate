@@ -83,7 +83,7 @@ Add the `?sourceMap` option to the `css-loader` loader and also to every other c
     ...
 ```
 
-## Requiring all files in a directory 
+## Requiring all files in a directory
 
 This is used to implement a module system for multipage applications. See [require.context API documentation](https://webpack.js.org/guides/dependency-management/#require-context)
 
@@ -206,3 +206,7 @@ module.rules: [
 ```
 
 At this point we have a basic functional bootstrap-powered website
+
+2017-08-07 13:13:35
+
+* [x] Add a documentation folder and create a page for the js page modules.

@@ -9,7 +9,14 @@ import Router from './router';
 import ready from 'document-ready-promise';
 
 // Add bootstrap resources
-require('bootstrap-loader');
+const packageJSON = require('../package.json');
+if (packageJSON &&
+    packageJSON.multipageWebpackBoilerplate &&
+    packageJSON.multipageWebpackBoilerplate.useBootstrap3) {
+
+    require('bootstrap-loader');
+}
+
 
 // Page js modules: Invoke the correct onReady funciton based on data-module-id attribute on 
 // `<body>` tag

@@ -32,5 +32,8 @@
   "dependencies": {
     "document-ready-promise": "^3.0.1",
     "jquery": "^3.2.1"
+  },
+  "multipageWebpackBoilerplate": {
+    "useBootstrap3": true
   }
 }
