@@ -9,7 +9,7 @@ import Router from './router';
 import ready from 'document-ready-promise';
 
 // Add bootstrap resources
-const packageJSON = require('../package.json');
+const packageJSON = require('../../../package.json');
 if (packageJSON &&
     packageJSON.multipageWebpackBoilerplate &&
     packageJSON.multipageWebpackBoilerplate.useBootstrap3) {

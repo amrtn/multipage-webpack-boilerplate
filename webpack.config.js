@@ -12,14 +12,15 @@ const extractTextPlugin = new ExtractTextPlugin({
 
 const generalConfig = {
     devtool: 'source-map',
-    entry: './js/app.js',
+    entry: './src/client/js/app.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: '/dist'
+        publicPath: '/src/dist'
     },
     devServer: {
-        contentBase: path.resolve(__dirname, '.'), // New
+        publicPath: '/',
+        contentBase: path.resolve(__dirname, './src'), // New
     },
     module: {
         rules: [{
