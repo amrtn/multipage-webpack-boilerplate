@@ -10,9 +10,9 @@
     "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "start": "http-server src/"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["webpack", "bootstrap", "boilerplate"],
+  "author": "Álvaro Martín Oliva",
+  "license": "MIT",
   "devDependencies": {
     "bootstrap-loader": "^2.1.0",
     "bootstrap-sass": "^3.3.7",
